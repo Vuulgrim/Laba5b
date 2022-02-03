@@ -1,0 +1,3 @@
+C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/Laba5b.dir
+C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/rebuild_cache.dir
