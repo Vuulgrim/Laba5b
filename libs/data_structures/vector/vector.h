@@ -6,13 +6,15 @@
 #define LABA5B_VECTOR_H
 
 #endif //LABA5B_VECTOR_H
-#include <stdio.h>
 
- typedef struct vector {
-     int * data ; // указатель на элементы вектора
-     size_t size ; // размер вектора
-     size_t capacity ; // вместимость вектора
-     } vector ;
+#include <stdio.h>
+#include <stdbool.h>
+
+typedef struct vector {
+    int *data; // указатель на элементы вектора
+    size_t size; // размер вектора
+    size_t capacity; // вместимость вектора
+} vector;
 
 //возвращает структуру-дескриптор вектор из n значений.
 vector createVector(size_t n);
@@ -28,3 +30,18 @@ void shrinkToFit(vector *v);
 
 //освобождает память, выделенную вектору.
 void deleteVector(vector *v);
+
+//Возвращает i-ый элемент вектора v.
+int getVectorValue(vector *v, size_t i);
+
+//Добавляет элемент x в конец вектора v.
+void pushBack(vector *v, int x);
+
+//Проверка вектора на пустоту.
+bool isEmpty(vector *v);
+
+//Проверка вектора на полноту.
+bool isFull(vector *v);
+
+//Удаляет последний элемент из вектора.
+void popBack(vector *v);

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <malloc.h>
+#include <stdbool.h>
 
 void badAlloc() {
     fprintf(stderr, "bad alloc");
@@ -42,6 +43,36 @@ void shrinkToFit(vector *v) {
     reserve(v, v->size);
 }
 
-void deleteVector (vector *v){
+void deleteVector(vector *v) {
     reserve(v, 0);
+}
+
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+int getVectorValue(vector *v, size_t i) {
+    return v->data[i];
+}
+
+void pushBack(vector *v, int x) {
+    if (isFull(v)) {
+        reserve(v, v->capacity * 2);
+    } else if (isEmpty(v)) {
+        reserve(v, 1);
+    }
+    v->data[v->size] = x;
+    v->size++;
+}
+
+void popBack(vector *v) {
+    if (v->size == 0) {
+        badAlloc();
+    } else {
+        v->size--;
+    }
 }
