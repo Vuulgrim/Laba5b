@@ -45,3 +45,12 @@ bool isFull(vector *v);
 
 //Удаляет последний элемент из вектора.
 void popBack(vector *v);
+
+//Возвращает указатель на index-ый элемент вектора.
+int *atVector(vector *v, size_t index);
+
+//Возвращает указатель на последний элемент вектора.
+int *back(vector *v);
+
+//Возвращает указатель на первый элемент вектора.
+int *front(vector *v);

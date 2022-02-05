@@ -62,7 +62,7 @@ int getVectorValue(vector *v, size_t i) {
 void pushBack(vector *v, int x) {
     if (isFull(v)) {
         reserve(v, v->capacity * 2);
-    } else if (isEmpty(v)) {
+    } else {
         reserve(v, 1);
     }
     v->data[v->size] = x;
@@ -75,4 +75,21 @@ void popBack(vector *v) {
     } else {
         v->size--;
     }
+}
+
+int *atVector(vector *v, size_t index) {
+    if (index > v->size) {
+        fprintf(stderr, "IndexError: a[%d] is not exist\n", index);
+        exit(1);
+    }
+
+    return v->data + index;
+}
+
+int *back(vector *v) {
+    return atVector(v, v->size - 1);
+}
+
+int *front(vector *v) {
+    return atVector(v, 0);
 }
