@@ -42,7 +42,7 @@ void test_testAtVector_requestToLastElement() {
     pushBack(&v, 1);
     pushBack(&v, 2);
     pushBack(&v, 3);
-    assert(atVector(&v, v.size - 1) == v.data + v.size + 1);
+    assert(atVector(&v, v.size - 1) == v.data + v.size - 1);
 }
 
 void test_testAtVector_requestToFirstElement() {
@@ -73,6 +73,7 @@ void test() {
     test_testAtVector_requestToLastElement();
     test_testAtVector_requestToFirstElement();
     test_back_oneElementInVector();
+    test_front_oneElementInVector();
 }
 
 int main() {

@@ -13,7 +13,7 @@ void badAlloc() {
     exit(1);
 }
 
-vector createVector(size_t n) {
+vector createVector(const size_t n) {
     vector v = {malloc(sizeof(int) * n), 0, n};
     if (v.data == NULL) {
         badAlloc();
@@ -22,16 +22,12 @@ vector createVector(size_t n) {
     }
 }
 
-void reserve(vector *v, size_t newCapacity) {
+void reserve(vector *v, const size_t newCapacity) {
     v->data = realloc(v->data, sizeof(int) * newCapacity);
-    if (v->size == newCapacity) {
-        v->size = newCapacity;
-    }
-    if (v->data == NULL) {
+    v->capacity = newCapacity;
+    v->size = newCapacity < v->size ? newCapacity : v->size;
+    if (v->data == NULL && newCapacity != 0) {
         badAlloc();
-    }
-    if (newCapacity == 0) {
-        return;
     }
 }
 
@@ -55,14 +51,14 @@ bool isFull(vector *v) {
     return v->size == v->capacity;
 }
 
-int getVectorValue(vector *v, size_t i) {
+int getVectorValue(vector *v, const size_t i) {
     return v->data[i];
 }
 
-void pushBack(vector *v, int x) {
-    if (isFull(v)) {
+void pushBack(vector *v, const int x) {
+    if (isFull(v) && v->capacity != 0) {
         reserve(v, v->capacity * 2);
-    } else {
+    } else if (v->capacity == 0) {
         reserve(v, 1);
     }
     v->data[v->size] = x;
@@ -70,16 +66,15 @@ void pushBack(vector *v, int x) {
 }
 
 void popBack(vector *v) {
-    if (v->size == 0) {
+    if (isEmpty(v)) {
         badAlloc();
-    } else {
-        v->size--;
     }
+    v->size--;
 }
 
-int *atVector(vector *v, size_t index) {
+int *atVector(vector *v, const size_t index) {
     if (index > v->size) {
-        fprintf(stderr, "IndexError: a[%d] is not exist\n", index);
+        fprintf(stderr, "IndexError: a[%llu] is not exist\n", index);
         exit(1);
     }
 
