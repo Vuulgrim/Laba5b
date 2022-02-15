@@ -212,3 +212,29 @@ void swapRowsOfMinAndMax(matrix m) {
 
     swapRows(m, max.rowIndex, min.rowIndex);
 }
+
+//2
+int getMax(const int *a, int n){
+    int maxValue = a[0];
+    for(int i = 1; i < n; i++)
+        if( a[i] > maxValue)
+            maxValue = a[i];
+    return maxValue;
+}
+
+void sortRowsByMaxElement(matrix m) {
+    insertionSortRowsMatrixByRowCriteria(m, getMax);
+}
+
+//3
+int getMin(const int *a, int n){
+    int minValue = a[0];
+    for(int i = 1; i < n; i++)
+        if( a[i] < minValue)
+            minValue = a[i];
+    return minValue;
+}
+
+void sortColsByMinElement(matrix m) {
+    insertionSortColsMatrixByColCriteria(m, getMin);
+}
