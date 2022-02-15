@@ -204,3 +204,11 @@ position getMaxValuePos(matrix m) {
     }
     return maxPos;
 }
+
+//1
+void swapRowsOfMinAndMax(matrix m) {
+    position max = getMaxValuePos(m);
+    position min = getMinValuePos(m);
+
+    swapRows(m, max.rowIndex, min.rowIndex);
+}
