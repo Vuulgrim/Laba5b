@@ -6,19 +6,23 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/vector/vector.h
+C:/Users/vikir/Desktop/Laba5b/libs/algorithms/algorithms.c
+algorithms.h
+C:/Users/vikir/Desktop/Laba5b/libs/algorithms/algorithms.h
+stdio.h
+-
+
+C:/Users/vikir/Desktop/Laba5b/libs/algorithms/algorithms.h
+
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.c
+matrix.h
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.h
+malloc.h
+-
+
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.h
 stdio.h
 -
 stdbool.h
--
-
-C:/Users/vikir/Desktop/Laba5b/main.c
-stdio.h
--
-stdint.h
--
-libs/data_structures/vector/vector.h
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/vector/vector.h
-assert.h
 -
 
