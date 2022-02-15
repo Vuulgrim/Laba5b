@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/vikir/Desktop/Laba5b/libs/algorithms/algorithms.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/Laba5b.dir/libs/algorithms/algorithms.c.obj"
+  "C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/Laba5b.dir/libs/data_structures/matrix/matrix.c.obj"
   "C:/Users/vikir/Desktop/Laba5b/main.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/CMakeFiles/Laba5b.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

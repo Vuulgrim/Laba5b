@@ -3,7 +3,7 @@ project(Laba5b C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Laba5b main.c libs/algorithms/algorithms.c libs/algorithms/algorithms.h)
+add_executable(Laba5b main.c libs/algorithms/algorithms.c libs/algorithms/algorithms.h libs/data_structures/matrix/matrix.h libs/data_structures/matrix/matrix.c)
 add_subdirectory(libs)
 
 target_link_libraries(Laba5b algorithms)

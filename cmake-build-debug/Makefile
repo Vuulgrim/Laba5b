@@ -178,6 +178,30 @@ libs/algorithms/algorithms.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Laba5b.dir\build.make CMakeFiles/Laba5b.dir/libs/algorithms/algorithms.c.s
 .PHONY : libs/algorithms/algorithms.c.s
 
+libs/data_structures/matrix/matrix.obj: libs/data_structures/matrix/matrix.c.obj
+.PHONY : libs/data_structures/matrix/matrix.obj
+
+# target to build an object file
+libs/data_structures/matrix/matrix.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Laba5b.dir\build.make CMakeFiles/Laba5b.dir/libs/data_structures/matrix/matrix.c.obj
+.PHONY : libs/data_structures/matrix/matrix.c.obj
+
+libs/data_structures/matrix/matrix.i: libs/data_structures/matrix/matrix.c.i
+.PHONY : libs/data_structures/matrix/matrix.i
+
+# target to preprocess a source file
+libs/data_structures/matrix/matrix.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Laba5b.dir\build.make CMakeFiles/Laba5b.dir/libs/data_structures/matrix/matrix.c.i
+.PHONY : libs/data_structures/matrix/matrix.c.i
+
+libs/data_structures/matrix/matrix.s: libs/data_structures/matrix/matrix.c.s
+.PHONY : libs/data_structures/matrix/matrix.s
+
+# target to generate assembly for a file
+libs/data_structures/matrix/matrix.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Laba5b.dir\build.make CMakeFiles/Laba5b.dir/libs/data_structures/matrix/matrix.c.s
+.PHONY : libs/data_structures/matrix/matrix.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -216,6 +240,9 @@ help:
 	@echo ... libs/algorithms/algorithms.obj
 	@echo ... libs/algorithms/algorithms.i
 	@echo ... libs/algorithms/algorithms.s
+	@echo ... libs/data_structures/matrix/matrix.obj
+	@echo ... libs/data_structures/matrix/matrix.i
+	@echo ... libs/data_structures/matrix/matrix.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
