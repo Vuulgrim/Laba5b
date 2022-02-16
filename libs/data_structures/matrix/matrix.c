@@ -214,10 +214,10 @@ void swapRowsOfMinAndMax(matrix m) {
 }
 
 //2
-int getMax(const int *a, int n){
+int getMax(const int *a, int n) {
     int maxValue = a[0];
-    for(int i = 1; i < n; i++)
-        if( a[i] > maxValue)
+    for (int i = 1; i < n; i++)
+        if (a[i] > maxValue)
             maxValue = a[i];
     return maxValue;
 }
@@ -227,14 +227,42 @@ void sortRowsByMaxElement(matrix m) {
 }
 
 //3
-int getMin(const int *a, int n){
+int getMin(const int *a, int n) {
     int minValue = a[0];
-    for(int i = 1; i < n; i++)
-        if( a[i] < minValue)
+    for (int i = 1; i < n; i++)
+        if (a[i] < minValue)
             minValue = a[i];
     return minValue;
 }
 
 void sortColsByMinElement(matrix m) {
     insertionSortColsMatrixByColCriteria(m, getMin);
+}
+
+//5
+bool isUnique(long long *a, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n - 1; j++) {
+            if (a[i] == a[j])
+                return false;
+        }
+    }
+    return true;
+}
+
+long long getSum(int *a, int n) {
+    long long sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+    }
+    return sum;
+}
+
+void transposeIfMatrixHasEqualSumOfRows(matrix m) {
+    int a[m.nRows];
+    for (int i = 0; i < m.nRows; i++) {
+        a[i] = getSum(m.values[i], m.nCols);
+    }
+    if (isUnique(a, m.nRows) == true)
+        transposeSquareMatrix(m);
 }
