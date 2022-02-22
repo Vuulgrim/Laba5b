@@ -303,3 +303,27 @@ bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
         return false;
     return true;
 }
+
+//7
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int getMaxElementFromDiagonal(matrix m, int iRow, int iCol) {
+    int maxValue = m.values[iRow][iCol];
+    while (iRow < m.nRows && iCol < m.nCols)
+        maxValue = max(maxValue, m.values[iRow++][iCol++]);
+    return maxValue;
+}
+
+long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
+    int sum = 0;
+    for (int i = 1; i < m.nRows; i++) {
+        sum += getMaxElementFromDiagonal(m, i, 0);
+    }
+
+    for (int j = 1; j < m.nCols; j++) {
+        sum += getMaxElementFromDiagonal(m, 0, j);
+    }
+    return sum;
+}
