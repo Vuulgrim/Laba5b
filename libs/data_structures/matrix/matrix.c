@@ -327,3 +327,32 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
     }
     return sum;
 }
+
+//8
+int min(int a, int b) {
+    return a < b ? b : a;
+}
+
+int getMinInArea(matrix m) {
+    position minPos = getMaxValuePos(m);
+    int minElement = m.values[minPos.rowIndex][minPos.colIndex];
+
+    int jRight = minPos.colIndex;
+    int jLeft = minPos.colIndex;
+    for (int i = minPos.rowIndex - 1; i >= 0; i--) {
+        jLeft = jLeft > 0 ? jLeft - 1 : jLeft;
+        jRight = jRight < m.nCols ? jRight + 1 : jRight;
+        minElement = min(getMin(&m.values[i][jLeft], jRight - jLeft), minElement);
+    }
+    return minElement;
+}
+
+
+void transposeMatrix(matrix m) {
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; i++)
+            if (i == j)
+                swap((int *) &m.values[i][j], (int *) &m.values[j][i]);
+}
+
+//
