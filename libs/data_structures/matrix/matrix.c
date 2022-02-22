@@ -4,6 +4,8 @@
 
 #include "matrix.h"
 #include <malloc.h>
+#include <assert.h>
+
 
 void swap(int *a, int *b) {
     int t = *a;
@@ -292,4 +294,12 @@ void transposeIfMatrixHasEqualSumOfRows(matrix m) {
     }
     if (isUnique(a, m.nRows) == true)
         transposeSquareMatrix(m);
+}
+
+//6
+bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
+    matrix m3 = mulMatrices(m1, m2);
+    if (!isEMatrix(m3))
+        return false;
+    return true;
 }
