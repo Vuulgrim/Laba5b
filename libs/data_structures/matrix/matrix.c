@@ -5,7 +5,7 @@
 #include "matrix.h"
 #include <malloc.h>
 #include <assert.h>
-
+#include <math.h>
 
 void swap(int *a, int *b) {
     int t = *a;
@@ -355,4 +355,36 @@ void transposeMatrix(matrix m) {
                 swap((int *) &m.values[i][j], (int *) &m.values[j][i]);
 }
 
-//
+//9
+float getDistance(int *a, int n) {
+    double sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += pow(a[i], 2);
+    return sqrt(sum);
+}
+
+void swapF(float *a, float *b) {
+    float temp = *b;
+    *b = *a;
+    *a = temp;
+}
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (criteria)(int *, int)) {
+    float criteriaArray[m.nRows];
+    for (size_t i = 0; i < m.nRows; ++i)
+        criteriaArray[i] = criteria(m.values[i], m.nCols);
+
+    for (int i = 1; i < m.nRows; ++i) {
+        int j = i;
+        while (j > 0 && criteriaArray[j - 1] > criteriaArray[j]) {
+            swapF(&criteriaArray[j - 1], &criteriaArray[j]);
+            swapRows(m, j - 1, j);
+
+            j--;
+        }
+    }
+}
+
+void sortByDistances(matrix m) {
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
+}
