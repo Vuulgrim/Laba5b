@@ -239,6 +239,33 @@ void sortColsByMinElement(matrix m) {
     insertionSortColsMatrixByColCriteria(m, getMin);
 }
 
+//4
+matrix mulMatrices(matrix m1, matrix m2) {
+    if (m1.nCols != m2.nRows) {
+        fprintf(stderr, "matrices cannot be multiplied");
+        exit(1);
+    }
+
+    matrix multiplicationMatrix = getMemMatrix(m1.nRows, m2.nCols);
+
+    for (int indexRowM1 = 0; indexRowM1 < m1.nRows; indexRowM1++)
+        for (int indexColM2 = 0; indexColM2 < m2.nCols; indexColM2++) {
+            multiplicationMatrix.values[indexRowM1][indexColM2] = 0;
+            for (int indexRowM2 = 0; indexRowM2 < m2.nRows; indexRowM2++)
+                multiplicationMatrix.values[indexRowM1][indexColM2] +=
+                        m1.values[indexRowM1][indexRowM2]
+                        * m2.values[indexRowM2][indexColM2];
+        }
+
+    return (matrix) multiplicationMatrix;
+}
+
+void getSquareOfMatrixIfSymmetric(matrix *m) {
+    if (isSquareMatrix(*m)) {
+        *m = mulMatrices(*m, *m);
+    }
+}
+
 //5
 bool isUnique(long long *a, int n) {
     for (int i = 0; i < n; i++) {
