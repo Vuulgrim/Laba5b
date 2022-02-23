@@ -431,3 +431,17 @@ int countEqClassesByRowsSum(matrix m) {
 }
 
 //11
+int getNSpecialElement(const matrix m) {
+    int counter = 0;
+
+    for (int i = 0; i < m.nCols; i++) {
+        long long currentSum = 0;
+        for (int j = 0; j < m.nRows; j++)
+            currentSum += m.values[j][i];
+        for (int j = 0; j < m.nRows; j++)
+            if (currentSum < 2 * m.values[j][i])
+                counter++;
+    }
+
+    return counter;
+}
