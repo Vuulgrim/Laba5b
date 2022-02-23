@@ -543,3 +543,32 @@ void printMatrixWithMaxZeroRows(matrix *arrayOfMatrices, int nMatrix) {
             outputMatrix(arrayOfMatrices[i]);
     }
 }
+
+//15
+
+float getAbsoluteMax(matrix m) {
+    float absoluteMax = fabs((m).values[0][0]);
+    for (int i = 0; i < (m).nRows; i++) {
+        for (int j = 0; j < (m).nCols; j++) {
+            float absValue = fabs((m).values[i][j]);
+            if (absoluteMax < absValue)
+                absoluteMax = absValue;
+        }
+    }
+
+    return absoluteMax;
+}
+
+void printMatrixWithMinNormMax(matrix *arrayOfMatrices, int nMatrix) {
+    float minAbsoluteMax = getAbsoluteMax(arrayOfMatrices[0]);
+    for (int i = 1; i < nMatrix; i++) {
+        float absoluteMax = getAbsoluteMax(arrayOfMatrices[i]);
+        if (minAbsoluteMax > absoluteMax)
+            minAbsoluteMax = absoluteMax;
+    }
+
+    for (int i = 0; i < nMatrix; i++) {
+        if (getAbsoluteMax(arrayOfMatrices[i]) - minAbsoluteMax)
+            outputMatrix(arrayOfMatrices[i]);
+    }
+}
