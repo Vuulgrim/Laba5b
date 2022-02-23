@@ -445,3 +445,31 @@ int getNSpecialElement(const matrix m) {
 
     return counter;
 }
+
+//12
+position getLeftMin(matrix m) {
+    position minPos = (position) {0, 0};
+
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            int min = m.values[minPos.rowIndex][minPos.colIndex];
+            if (j < minPos.colIndex && m.values[i][j] == min || m.values[i][j] < min) {
+                minPos = (position) {i, j};
+            }
+        }
+    }
+
+    return minPos;
+}
+
+void swapPenultimateRow(matrix m, int n) {
+    int penultimateRow = m.nRows - 2;
+    int minColIndex = getLeftMin(m).colIndex;
+    int *minCol = (int *) malloc(sizeof(int) * m.nRows);
+
+    for (int i = 0; i < m.nRows; i++) {
+        minCol[i] = m.values[i][minColIndex];
+    }
+
+    memcpy(m.values[penultimateRow], minCol, sizeof(int) * m.nCols);
+}
