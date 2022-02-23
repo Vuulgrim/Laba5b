@@ -6,6 +6,7 @@
 #include <malloc.h>
 #include <assert.h>
 #include <math.h>
+#include <memory.h>
 
 void swap(int *a, int *b) {
     int t = *a;
@@ -22,24 +23,25 @@ matrix getMemMatrix(int nRows, int nCols) {
 
 matrix *getMemArrayOfMatrices(int nMatrices,
                               int nRows, int nCols) {
-    matrix *ms = (matrix *) malloc(sizeof(matrix) * nMatrices);
+    matrix *arrayOfMatrices = (matrix *) malloc(sizeof(matrix) * nMatrices);
     for (int i = 0; i < nMatrices; i++)
-        ms[i] = getMemMatrix(nRows, nCols);
-    return ms;
+        arrayOfMatrices[i] = getMemMatrix(nRows, nCols);
+    return arrayOfMatrices;
 }
 
 void freeMemMatrix(matrix m) {
+    int rows = m.nRows;
     for (int i = 0; i < m.nRows; i++) {
         free(m.values[i]);
     }
     free(m.values);
 }
 
-void freeMemMatrices(matrix *ms, int nMatrices) {
+void freeMemMatrices(matrix *arrayOfMatrices, int nMatrices) {
     for (int i = 0; i < nMatrices; i++) {
-        freeMemMatrix(ms[i]);
+        freeMemMatrix(arrayOfMatrices[i]);
     }
-    free(ms->values);
+    free(arrayOfMatrices->values);
 }
 
 void inputMatrix(matrix m) {
@@ -50,9 +52,9 @@ void inputMatrix(matrix m) {
     }
 }
 
-void inputMatrices(matrix *ms, int nMatrices) {
+void inputMatrices(matrix *arrayOfMatrices, int nMatrices) {
     for (int i = 0; i < nMatrices; i++) {
-        inputMatrix(ms[i]);
+        inputMatrix(arrayOfMatrices[i]);
     }
 }
 
@@ -61,6 +63,7 @@ void outputMatrix(matrix m) {
         for (int j = 0; j < m.nCols; j++) {
             printf("%d", m.values[i][j]);
         }
+        printf("\n");
     }
 }
 
@@ -75,6 +78,9 @@ void swapRows(matrix m, int i1, int i2) {
 }
 
 void swapColumns(matrix m, int j1, int j2) {
+    if (j1 >= m.nCols || j2 >= m.nCols) {
+        exit(1);
+    }
     for (int i = 0; i < m.nRows; i++) {
         swap(&m.values[i][j1], &m.values[i][j2]);
     }
@@ -85,12 +91,12 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
     for (int i = 0; i < m.nRows; i++) {
         arrayOfCriteria[i] = criteria(m.values[i], m.nCols);
     }
+
     for (int j = 1; j < m.nRows; j++) {
         int k = j;
         while (k != 0 && arrayOfCriteria[k - 1] > arrayOfCriteria[k]) {
             swapRows(m, k - 1, k);
             swap(&arrayOfCriteria[k - 1], &arrayOfCriteria[k]);
-
             k--;
         }
     }
@@ -111,18 +117,13 @@ void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int))
         while (k != 0 && arrayOfCriteria[k - 1] > arrayOfCriteria[k]) {
             swapRows(m, k - 1, k);
             swap(&arrayOfCriteria[k - 1], &arrayOfCriteria[k]);
-
             k--;
         }
     }
 }
 
 bool isSquareMatrix(matrix m) {
-    if (m.nRows == m.nCols) {
-        return true;
-    } else {
-        return false;
-    }
+    return m.nRows == m.nCols;
 }
 
 bool twoMatricesEqual(matrix m1, matrix m2) {
@@ -130,11 +131,8 @@ bool twoMatricesEqual(matrix m1, matrix m2) {
         return false;
     } else {
         for (int i = 0; i < m1.nRows; i++) {
-            for (int j = 0; j < m1.nCols; j++) {
-                if (m1.values[i][j] != m2.values[i][j]) {
-                    return false;
-                }
-            }
+            if (memcmp(m1.values[i], m2.values[i], sizeof(int) * m1.nCols) != 0)
+                return false;
         }
     }
 
@@ -155,7 +153,7 @@ bool isEMatrix(matrix m) {
 }
 
 bool isSymmetricMatrix(matrix m) {
-    if (isSquareMatrix(m) == false) {
+    if (!isSquareMatrix(m)) {
         return false;
     }
     for (int i = 0; i < m.nRows; i++)
@@ -171,6 +169,8 @@ void transposeSquareMatrix(matrix m) {
             for (int j = 0; j < m.nCols; i++)
                 if (i == j)
                     swap((int *) &m.values[i][j], (int *) &m.values[j][i]);
+    } else {
+        exit(1);
     }
 }
 
@@ -187,8 +187,8 @@ position getMinValuePos(matrix m) {
             }
         }
     }
-    return minPos;
 
+    return minPos;
 }
 
 position getMaxValuePos(matrix m) {
@@ -204,6 +204,7 @@ position getMaxValuePos(matrix m) {
             }
         }
     }
+
     return maxPos;
 }
 
@@ -211,7 +212,6 @@ position getMaxValuePos(matrix m) {
 void swapRowsOfMinAndMax(matrix m) {
     position max = getMaxValuePos(m);
     position min = getMinValuePos(m);
-
     swapRows(m, max.rowIndex, min.rowIndex);
 }
 
@@ -388,3 +388,5 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (criteria)(int *, int
 void sortByDistances(matrix m) {
     insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
+
+//10

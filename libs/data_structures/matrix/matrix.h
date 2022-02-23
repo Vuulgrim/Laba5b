@@ -33,14 +33,14 @@ matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols);
 //освобождает память, выделенную под хранение матрицы m.
 void freeMemMatrix(matrix m);
 
-//освобождает память, выделенную под хранение массива ms из nMatrices матриц.
-void freeMemMatrices(matrix *ms, int nMatrices);
+//освобождает память, выделенную под хранение массива arrayOfMatrices из nMatrices матриц.
+void freeMemMatrices(matrix *arrayOfMatrices, int nMatrices);
 
 //ввод матрицы m.
 void inputMatrix(matrix m);
 
-//ввод массива из nMatrices матриц, хранящейся по адресу ms.
-void inputMatrices(matrix *ms, int nMatrices);
+//ввод массива из nMatrices матриц, хранящейся по адресу arrayOfMatrices.
+void inputMatrices(matrix *arrayOfMatrices, int nMatrices);
 
 //вывод матрицы m.
 void outputMatrix(matrix m);
