@@ -105,9 +105,9 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
 
 void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
     int arrayOfCriteria[m.nCols];
-    for (int i = 0; i < m.nCols; i++) {
+    for (size_t i = 0; i < m.nCols; i++) {
         int arrayRow[m.nRows];
-        for (int j = 0; j < m.nRows; j++) {
+        for (size_t j = 0; j < m.nRows; j++) {
             arrayRow[j] = m.values[i][j];
         }
         arrayOfCriteria[i] = criteria(arrayRow, m.nRows);
@@ -116,8 +116,8 @@ void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int))
     for (int j = 1; j < m.nCols; j++) {
         int k = j;
         while (k != 0 && arrayOfCriteria[k - 1] > arrayOfCriteria[k]) {
-            swapRows(m, k - 1, k);
             swap(&arrayOfCriteria[k - 1], &arrayOfCriteria[k]);
+            swapColumns(m, k - 1, k);
             k--;
         }
     }
@@ -207,6 +207,18 @@ position getMaxValuePos(matrix m) {
     }
 
     return maxPos;
+}
+
+matrix createMatrixFromArray(const int *a,
+                             int nRows, int nCols) {
+    matrix m = getMemMatrix(nRows, nCols);
+
+    int k = 0;
+    for (int i = 0; i < nRows; i++)
+        for (int j = 0; j < nCols; j++)
+            m.values[i][j] = a[k++];
+
+    return m;
 }
 
 //1
@@ -472,4 +484,29 @@ void swapPenultimateRow(matrix m, int n) {
     }
 
     memcpy(m.values[penultimateRow], minCol, sizeof(int) * m.nCols);
+}
+
+//13
+bool isNonDescendingSorted(const int *a, const int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] > a[i + 1])
+            return false;
+    }
+    return true;
+}
+
+bool hasAllNonDescendingRows(matrix m) {
+    for (int i = 0; i < m.nRows; i++) {
+        if (!isNonDescendingSorted(m.values[i], m.nRows))
+            return false;
+    }
+    return true;
+}
+
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
+    int counterSortedMatrices = 0;
+    for (int i = 0; i < nMatrix; i++) {
+        counterSortedMatrices += hasAllNonDescendingRows(ms[i]);
+    }
+    return counterSortedMatrices;
 }

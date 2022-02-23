@@ -80,3 +80,8 @@ position getMinValuePos(matrix m);
 
 //возвращает позицию максимального элемента матрицы m.
 position getMaxValuePos(matrix m);
+
+matrix createMatrixFromArray ( const int *a ,
+                               int nRows , int nCols );
+
+long long getSum(int *a, int n);
