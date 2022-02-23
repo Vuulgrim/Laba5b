@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <math.h>
 #include <memory.h>
+#include <stdlib.h>
 
 void swap(int *a, int *b) {
     int t = *a;
@@ -390,3 +391,43 @@ void sortByDistances(matrix m) {
 }
 
 //10
+int cmp_long_long(const void *pa, const void *pb) {
+    long long a = *((long long *) pa);
+    long long b = *((long long *) pb);
+
+    if (a < b) {
+        return -1;
+    } else if (a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+//Почему данная функция должна быть int, а не bool?
+int countNUnique(long long *a, int n) {
+
+    qsort(a, n, sizeof(long long), cmp_long_long);
+    for (int i = 0; i < n; i++) {
+        if (a[i - 1] == a[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int countEqClassesByRowsSum(matrix m) {
+    long long *arrayOfSums = (long long *) malloc(sizeof(long long) * m.nRows);
+    for (int i = 0; i < (m).nRows; ++i) {
+        arrayOfSums[i] = getSum((m).values[i], (m).nCols);
+    }
+    for (int i = 0; i < m.nRows; i++) {
+        arrayOfSums[i] = getSum(m.values[i], m.nCols);
+    }
+    int unique = countNUnique(arrayOfSums, m.nRows);
+
+    return unique;
+}
+
+//11
