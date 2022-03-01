@@ -153,6 +153,30 @@ matrix/matrix.c.s:
 	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.s
 .PHONY : matrix/matrix.c.s
 
+string_/string_.obj: string_/string_.c.obj
+.PHONY : string_/string_.obj
+
+# target to build an object file
+string_/string_.c.obj:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/string_.c.obj
+.PHONY : string_/string_.c.obj
+
+string_/string_.i: string_/string_.c.i
+.PHONY : string_/string_.i
+
+# target to preprocess a source file
+string_/string_.c.i:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/string_.c.i
+.PHONY : string_/string_.c.i
+
+string_/string_.s: string_/string_.c.s
+.PHONY : string_/string_.s
+
+# target to generate assembly for a file
+string_/string_.c.s:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/string_.c.s
+.PHONY : string_/string_.c.s
+
 vector/vector.obj: vector/vector.c.obj
 .PHONY : vector/vector.obj
 
@@ -189,6 +213,9 @@ help:
 	@echo ... matrix/matrix.obj
 	@echo ... matrix/matrix.i
 	@echo ... matrix/matrix.s
+	@echo ... string_/string_.obj
+	@echo ... string_/string_.i
+	@echo ... string_/string_.s
 	@echo ... vector/vector.obj
 	@echo ... vector/vector.i
 	@echo ... vector/vector.s

@@ -160,6 +160,12 @@
 		<Unit filename="C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.h">
 			<Option target="Laba5b"/>
 		</Unit>
+		<Unit filename="C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.c">
+			<Option target="data_structures"/>
+		</Unit>
+		<Unit filename="C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.h">
+			<Option target="data_structures"/>
+		</Unit>
 		<Unit filename="C:/Users/vikir/Desktop/Laba5b/libs/data_structures/vector/vector.c">
 			<Option target="data_structures"/>
 		</Unit>
