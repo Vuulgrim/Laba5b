@@ -6,25 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.c
-matrix.h
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.h
-malloc.h
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.c
+string_.h
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.h
+stdio.h
 -
-assert.h
--
-math.h
+ctype.h
 -
 memory.h
 -
-stdlib.h
--
 
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.h
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.h
+
+C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/tasks/string_.c
 stdio.h
 -
-stdbool.h
+ctype.h
 -
-
-C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.c
 

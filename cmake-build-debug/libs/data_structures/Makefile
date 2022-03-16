@@ -177,6 +177,30 @@ string_/string_.c.s:
 	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/string_.c.s
 .PHONY : string_/string_.c.s
 
+string_/tasks/string_.obj: string_/tasks/string_.c.obj
+.PHONY : string_/tasks/string_.obj
+
+# target to build an object file
+string_/tasks/string_.c.obj:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/tasks/string_.c.obj
+.PHONY : string_/tasks/string_.c.obj
+
+string_/tasks/string_.i: string_/tasks/string_.c.i
+.PHONY : string_/tasks/string_.i
+
+# target to preprocess a source file
+string_/tasks/string_.c.i:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/tasks/string_.c.i
+.PHONY : string_/tasks/string_.c.i
+
+string_/tasks/string_.s: string_/tasks/string_.c.s
+.PHONY : string_/tasks/string_.s
+
+# target to generate assembly for a file
+string_/tasks/string_.c.s:
+	cd /d C:\Users\vikir\Desktop\Laba5b\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string_/tasks/string_.c.s
+.PHONY : string_/tasks/string_.c.s
+
 vector/vector.obj: vector/vector.c.obj
 .PHONY : vector/vector.obj
 
@@ -216,6 +240,9 @@ help:
 	@echo ... string_/string_.obj
 	@echo ... string_/string_.i
 	@echo ... string_/string_.s
+	@echo ... string_/tasks/string_.obj
+	@echo ... string_/tasks/string_.i
+	@echo ... string_/tasks/string_.s
 	@echo ... vector/vector.obj
 	@echo ... vector/vector.i
 	@echo ... vector/vector.s

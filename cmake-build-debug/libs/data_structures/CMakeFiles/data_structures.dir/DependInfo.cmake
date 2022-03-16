@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/vikir/Desktop/Laba5b/libs/data_structures/matrix/matrix.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj"
   "C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/string_.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string_/string_.c.obj"
+  "C:/Users/vikir/Desktop/Laba5b/libs/data_structures/string_/tasks/string_.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string_/tasks/string_.c.obj"
   "C:/Users/vikir/Desktop/Laba5b/libs/data_structures/vector/vector.c" "C:/Users/vikir/Desktop/Laba5b/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/vector/vector.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
