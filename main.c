@@ -488,6 +488,121 @@ void radixSort(int *a, size_t n) {
     radixSort_(a, a + n);
 }
 
+//обменная сортировка с подсчетом операций сравнения
+long long getBubbleSortNComp(int *a, size_t size) {
+    long long nComps = 0;
+    for (size_t i = 0; ++nComps && i < size - 1; i++)
+        for (size_t j = size - 1; ++nComps && j > i; j--)
+            if (++nComps && a[j - 1] > a[j])
+                swap2(&a[j - 1], &a[j]);
+    return nComps;
+}
+
+//сортировка выбором с подсчетом операций сравнения
+long long getSelectionSortNComp(int *a, size_t n) {
+    long long nComps = 0;
+    for (int i = 0; ++nComps && i < n; i++) {
+        int min = a[i];
+        int minIndex = i;
+        for (int j = i + 1; ++nComps && j < n; j++)
+            if (++nComps && a[j] < min) {
+                min = a[j];
+                minIndex = j;
+            }
+        if (++nComps && i != minIndex)
+            swap2(&a[i], &a[minIndex]);
+    }
+
+    return nComps;
+}
+
+//сортировка вставками с подсчетом операций сравнения
+long long getInsertionSortNComp(int *a, const size_t size) {
+    long long nComps = 0;
+    for (size_t i = 1; ++nComps && i < size; i++) {
+        int t = a[i];
+        int j = i;
+        while (++nComps && j > 0 && a[j - 1] > t) {
+            a[j] = a[j - 1];
+            j--;
+        }
+        a[j] = t;
+    }
+
+    return nComps;
+}
+
+//сортировка расческой с подсчетом операций сравнения
+long long getCombsortNComp(int *a, const size_t size) {
+    long long nComps = 0;
+    size_t step = size;
+    int swapped = 1;
+    while (++nComps && step > 1 || swapped) {
+        if (++nComps && step > 1)
+            step /= 1.24733;
+        swapped = 0;
+        for (size_t i = 0, j = i + step; ++nComps && j < size; ++i, ++j)
+            if (++nComps && a[i] > a[j]) {
+                swap2(&a[i], &a[j]);
+                swapped = 1;
+            }
+    }
+
+    return nComps;
+}
+
+//сортировка Шелла с подсчетом операций сравнения
+long long getShellSortNComp(int *a, const size_t size) {
+    long long nComps = 0;
+    for (int step = size / 2; ++nComps && step > 0; step /= 2) {
+        for (size_t i = step; ++nComps && i < size; i++) {
+            int t = a[i];
+            int j = i;
+            while (++nComps && j - step >= 0 && a[j - step] > t) {
+                a[j] = a[j - step];
+                j -= step;
+            }
+            a[j] = t;
+        }
+    }
+
+    return nComps;
+}
+
+long long getRadixSortNComps_(int *a, int *n) {
+    long long nComps = 0;
+    int bit = 8;
+    int k = (32 + bit - 1) / bit;
+    int M = 1 << bit;
+    int sz = n - a;
+    int *b = (int *) malloc(sizeof(int) * sz);
+    int *c = (int *) malloc(sizeof(int) * M);
+    for (int i = 0; ++nComps && i < k; i++) {
+        for (int j = 0; ++nComps && j < M; j++)
+            c[j] = 0;
+
+        for (int *j = a; ++nComps && j < n; j++)
+            c[digit(*j, i, bit, M)]++;
+
+        for (int j = 1; ++nComps && j < M; j++)
+            c[j] += c[j - 1];
+
+        for (int *j = n - 1; ++nComps && j >= a; j--)
+            b[--c[digit(*j, i, bit, M)]] = *j;
+
+        int cur = 0;
+        for (int *j = a; ++nComps && j < n; j++)
+            *j = b[cur++];
+    }
+    free(b);
+    free(c);
+    return nComps;
+}
+
+void getRadixSortNComps(int *a, size_t n) {
+    getRadixSortNComps_(a, a + n);
+}
+
 typedef struct SortFunc {
     void (*sort)(int *arr, int size);
 
